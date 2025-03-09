@@ -1,16 +1,9 @@
+import { IUserFields } from "@/types/users-type";
 import { create } from "zustand";
 
 export interface IuserStore {
-  data: IuserFields;
-  setUserField: (fields: Partial<IuserFields>) => void;
-}
-
-export interface IuserFields {
-  name: string;
-  email: string;
-  gender: string;
-  status: string;
-  token: string;
+  data: IUserFields;
+  setUserField: (fields: Partial<IUserFields>) => void;
 }
 
 export const userStore = create<IuserStore>((set) => ({
@@ -22,6 +15,6 @@ export const userStore = create<IuserStore>((set) => ({
     token: "",
   },
 
-  setUserField: (fields: Partial<IuserFields>) =>
+  setUserField: (fields: Partial<IUserFields>) =>
     set((state) => ({ data: { ...state.data, ...fields } })),
 }));

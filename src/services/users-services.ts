@@ -1,4 +1,4 @@
-import { IuserFields } from "@/store/user-store";
+import { IUserFields } from "@/types/users-type";
 import API from "./api";
 
 export interface ILoginData {
@@ -33,11 +33,11 @@ export const getUserLists = async (
 };
 
 export const createUser = async (
-  data: IuserFields,
+  data: IUserFields,
   token: string
-): Promise<IuserFields> => {
+): Promise<IUserFields> => {
   try {
-    const response = await API.post<IuserFields>("/public/v2/users", data, {
+    const response = await API.post<IUserFields>("/public/v2/users", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

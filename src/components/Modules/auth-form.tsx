@@ -4,7 +4,7 @@ import { Button, Form, Input } from "antd";
 import { useLogin } from "@/hooks/use-auth";
 import { IUsersResponse } from "@/services/users-services";
 import UserFormModal from "./user-form-modal";
-import { userStore } from "@/store/user-store";
+import { userStore } from "@/store/users-store";
 import Cookies from "js-cookie";
 import { useRouter } from "nextjs-toploader/app";
 
@@ -30,6 +30,10 @@ const AuthForm: React.FC = () => {
         if (!data.find((item) => item.name === values.name)) {
           setOpen(true);
         } else {
+          Cookies.set(
+            "user_id",
+            data.find((item) => item.name === values.name)?.id.toString() || ""
+          );
           Cookies.set("token", values.token);
           router.push("/");
         }
