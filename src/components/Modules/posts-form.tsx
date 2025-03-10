@@ -5,21 +5,41 @@ import { IPostsField } from "@/types/posts-type";
 import { postsStore } from "@/store/posts-store";
 import { usePosts } from "@/hooks/use-posts";
 
-const PostForm = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
+const PostForm = ({
+  setOpen,
+  type,
+}: {
+  setOpen: (open: boolean) => void;
+  type: "create" | "update";
+}) => {
   const { data, setPostsField } = postsStore();
-  const { createPostMutation, isCreating } = usePosts();
+  const { createPostMutation, isCreating, updatePostMutation, isUpdating } =
+    usePosts();
 
   const onFinish: FormProps<IPostsField>["onFinish"] = () => {
-    createPostMutation(data, {
-      onSuccess: () => {
-        setOpen(false);
-        setPostsField({
-          ...data,
-          title: "",
-          body: "",
-        });
-      },
-    });
+    if (type === "create") {
+      createPostMutation(data, {
+        onSuccess: () => {
+          setOpen(false);
+          setPostsField({
+            ...data,
+            title: "",
+            body: "",
+          });
+        },
+      });
+    } else if (type === "update") {
+      updatePostMutation(data, {
+        onSuccess: () => {
+          setOpen(false);
+          setPostsField({
+            ...data,
+            title: "",
+            body: "",
+          });
+        },
+      });
+    }
   };
 
   const [form] = Form.useForm();
@@ -70,9 +90,9 @@ const PostForm = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
           type="primary"
           htmlType="submit"
           className="w-full"
-          loading={isCreating}
+          loading={isCreating || isUpdating}
         >
-          Create
+          {type === "create" ? "Create Post" : "Update Post"}
         </Button>
       </Form.Item>
     </Form>

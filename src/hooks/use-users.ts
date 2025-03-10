@@ -1,8 +1,8 @@
-import { showMessage } from "@/components/Elements/global-message";
 import { createUser, getUserDetailApi } from "@/services/users-services";
 import { userStore } from "@/store/users-store";
 import { IUserFields } from "@/types/users-type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { message } from "antd";
 import Cookies from "js-cookie";
 import { useRouter } from "nextjs-toploader/app";
 
@@ -27,16 +27,21 @@ export const useUsers = (postDetail?: { user_id?: string }) => {
       Cookies.set("user_id", id?.toString() || "");
       Cookies.set("token", data.token);
       queryClient.invalidateQueries({ queryKey: ["users"] });
-      showMessage("success", "User created successfully");
+      message.success("User created successfully");
 
       router.push("/");
     },
     onError: (error: unknown) => {
       const errorMessage =
         error instanceof Error ? error.message : "Something went wrong";
-      showMessage("error", errorMessage);
+      message.error(errorMessage);
     },
   });
 
-  return { createUserMutation, isPending, userDetail, isFetchingUserDetail };
+  return {
+    createUserMutation,
+    isPending,
+    userDetail,
+    isFetchingUserDetail,
+  };
 };

@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
+  padding: 0px !important;
+}
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;

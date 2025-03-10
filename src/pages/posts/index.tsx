@@ -12,68 +12,79 @@ import {
   Select,
   Typography,
 } from "antd";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const { Search } = Input;
 
 const PostsIndex = () => {
-  const { posts, isLoading, updateQueryParams, page, limit, title, onSearch } =
-    usePosts();
-  const [searchQuery, setSearchQuery] = useState(title);
-
-  useEffect(() => {
-    setSearchQuery(title);
-  }, [title]);
+  const {
+    posts,
+    isLoading,
+    updateQueryParams,
+    page,
+    limit,
+    title,
+    handleSearch,
+    searchQuery,
+    selectedFilter,
+    setSearchQuery,
+    setSelectedFilter,
+  } = usePosts();
 
   const onChange = (value: string) => {
-    console.log(`selected ${value}`);
+    setSelectedFilter(value);
   };
-
   return (
     <>
       <MainLayout>
         <div className="w-full flex flex-col gap-6 relative">
-          <div className="flex gap-4 items-center justify-between sticky top-0 z-20 bg-white py-4">
-            <div className="flex gap-4 items-center w-full max-w-xs">
-              <p className="text-xs text-nowrap">Filter by Author :</p>
-              <Select
-                showSearch
-                placeholder="Select a person"
-                optionFilterProp="label"
-                className="w-full"
-                onChange={onChange}
-                onSearch={onSearch}
-                options={[
-                  {
-                    value: "jack",
-                    label: "Jack",
-                  },
-                  {
-                    value: "lucy",
-                    label: "Lucy",
-                  },
-                  {
-                    value: "tom",
-                    label: "Tom",
-                  },
-                ]}
-              />
-            </div>
-            <div className="w-full max-w-sm flex items-center gap-2">
+          <div className="flex flex-col-reverse md:flex-row gap-4 items-center justify-between sticky top-0 z-20 bg-white py-4">
+            <div className="flex flex-col md:flex-row gap-2 items-center w-full md:max-w-md">
+              <div className="w-full flex items-center gap-2">
+                <span className="text-xs font-semibold text-nowrap">
+                  Search By:
+                </span>
+                <Select
+                  showSearch
+                  placeholder="Search By"
+                  optionFilterProp="label"
+                  className="w-full"
+                  onChange={onChange}
+                  value={selectedFilter}
+                  options={[
+                    {
+                      value: "title",
+                      label: "Title",
+                    },
+                    {
+                      value: "user_id",
+                      label: "User ID",
+                    },
+                    {
+                      value: "body",
+                      label: "Body",
+                    },
+                  ]}
+                />
+              </div>
               <Search
-                placeholder="Search Posts Title..."
+                placeholder="Search Posts..."
                 enterButton
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onSearch={onSearch}
+                onSearch={() =>
+                  handleSearch(searchQuery, selectedFilter, updateQueryParams)
+                }
                 allowClear
                 onClear={() => {
                   setSearchQuery("");
-                  updateQueryParams({ title: null });
+                  updateQueryParams({ [selectedFilter]: null });
                 }}
                 className="w-full"
               />
-              <PostsFormModal />
+            </div>
+            <div className="w-full flex justify-end">
+              <PostsFormModal type="create" />
             </div>
           </div>
           {title && (
@@ -90,18 +101,21 @@ const PostsIndex = () => {
           <Row gutter={[16, 16]}>
             {isLoading ? (
               Array.from({ length: 9 }).map((_, index) => (
-                <Col span={8} key={index}>
+                <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
                   <Skeleton active />
                 </Col>
               ))
             ) : posts?.data?.length ? (
               posts.data.map((post: IPostsField) => (
-                <Col span={8} key={post.id}>
+                <Col xs={24} sm={12} md={8} lg={6} xl={6} key={post.id}>
                   <PostsCard data={post} />
                 </Col>
               ))
             ) : (
-              <Col span={24} style={{ textAlign: "center", padding: "20px" }}>
+              <Col
+                span={24}
+                style={{ textAlign: "center", marginTop: "25svh" }}
+              >
                 <Typography.Text type="secondary" className="text-lg font-bold">
                   Not Found
                 </Typography.Text>

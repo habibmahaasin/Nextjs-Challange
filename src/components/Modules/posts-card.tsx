@@ -10,7 +10,7 @@ const PostsCard = ({ data }: { data: IPostsField }) => {
     <Card
       title={data.title}
       className="w-full min-h-full"
-      extra={<DropdownMenu />}
+      extra={<DropdownMenu data={data} />}
     >
       <div className="flex flex-col gap-6 w-full justify-between min-h-[150px]">
         <p className="line-clamp-3">{data.body}</p>

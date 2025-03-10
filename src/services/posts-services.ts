@@ -5,14 +5,18 @@ export const getPostsLists = async ({
   page,
   limit,
   title,
+  user_id,
+  body,
 }: {
   page: number;
   limit: number;
   title: string;
+  user_id: string;
+  body: string;
 }): Promise<IPostsResponseWithMeta> => {
   try {
     const response = await API.get<IPostsField[]>("/public/v2/posts", {
-      params: { page, per_page: limit, title },
+      params: { page, per_page: limit, title, user_id, body },
     });
 
     const totalItems = Number(response.headers?.["x-pagination-total"] || 0);
@@ -38,6 +42,55 @@ export const createPostApi = async (
 ): Promise<IPostsField> => {
   try {
     const response = await API.post<IPostsField>("/public/v2/posts", data);
+    return response.data;
+  } catch (error: unknown) {
+    const errorResponse = (error as { response?: { data?: any } }).response
+      ?.data;
+
+    let errorMessage = "service error";
+
+    if (Array.isArray(errorResponse)) {
+      errorMessage = errorResponse[0]?.message || errorMessage;
+    } else if (typeof errorResponse === "object" && errorResponse?.message) {
+      errorMessage = errorResponse.message;
+    }
+
+    throw new Error(errorMessage);
+  }
+};
+
+export const updatePostApi = async (
+  data: IPostsField
+): Promise<IPostsField> => {
+  try {
+    const response = await API.put<IPostsField>(
+      `/public/v2/posts/${data.id}`,
+      data
+    );
+    return response.data;
+  } catch (error: unknown) {
+    const errorResponse = (error as { response?: { data?: any } }).response
+      ?.data;
+
+    let errorMessage = "service error";
+
+    if (Array.isArray(errorResponse)) {
+      errorMessage = errorResponse[0]?.message || errorMessage;
+    } else if (typeof errorResponse === "object" && errorResponse?.message) {
+      errorMessage = errorResponse.message;
+    }
+
+    throw new Error(errorMessage);
+  }
+};
+
+export const deletePostApi = async (
+  data: IPostsField
+): Promise<IPostsField> => {
+  try {
+    const response = await API.delete<IPostsField>(
+      `/public/v2/posts/${data.id}`
+    );
     return response.data;
   } catch (error: unknown) {
     const errorResponse = (error as { response?: { data?: any } }).response

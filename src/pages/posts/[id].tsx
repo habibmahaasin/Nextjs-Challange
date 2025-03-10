@@ -1,10 +1,12 @@
 import MainLayout from "@/components/layouts/main-layout";
 import { usePosts } from "@/hooks/use-posts";
-import { Button, Card, Col, Row, Skeleton } from "antd";
+import { Button, Skeleton } from "antd";
 import { Typography } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { useRouter } from "nextjs-toploader/app";
 import { useUsers } from "@/hooks/use-users";
+import AuthorCard from "@/components/Modules/author-card";
+import { IUserFields } from "@/types/users-type";
 
 const { Title, Text } = Typography;
 
@@ -17,7 +19,7 @@ const PostsDetail = () => {
 
   return (
     <MainLayout>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 p-0 md:p-6">
         <Button
           onClick={() => router.push("/posts")}
           variant="outlined"
@@ -26,55 +28,29 @@ const PostsDetail = () => {
         >
           Back
         </Button>
-        <Row>
-          <Col span={14} className="p-2">
-            <div className="w-full flex flex-col gap-4">
-              {isPostDetailFetching ? (
-                <Skeleton active />
-              ) : (
-                <>
-                  <Title level={2}>{postDetail?.title}</Title>
-                  <Text>{postDetail?.body}</Text>
-                </>
-              )}
-            </div>
-          </Col>
-          <Col span={10} className="p-2">
-            <div className="w-full">
-              <Card style={{ width: "100%" }}>
-                <Title level={5} className="border-b pb-4">
-                  Author Detail :{" "}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 w-full p-4 bg-white shadow-sm">
+            {isPostDetailFetching ? (
+              <Skeleton active />
+            ) : (
+              <>
+                <Title level={2} className="text-lg md:text-2xl">
+                  {postDetail?.title}
                 </Title>
-                <div className="w-full flex flex-col gap-2 mt-4">
-                  {isPostDetailFetching || isFetchingUserDetail ? (
-                    <Skeleton active paragraph={{ rows: 4 }} />
-                  ) : (
-                    <>
-                      <div className="flex items-center justify-between">
-                        <p className="font-bold">Name</p>
-                        <p>{userDetail?.name || "Not Found"}</p>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <p className="font-bold">Email</p>
-                        <p className="line-clamp-1 text-ellipsis text-end">
-                          {userDetail?.email || "Not Found"}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <p className="font-bold">Gender</p>
-                        <p>{userDetail?.gender || "Not Found"}</p>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <p className="font-bold">Satatus</p>
-                        <p>{userDetail?.status || "Not Found"}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </Card>
-            </div>
-          </Col>
-        </Row>
+                <Text className="text-base md:text-lg">{postDetail?.body}</Text>
+              </>
+            )}
+          </div>
+
+          <div className="w-full p-4 bg-white shadow-sm">
+            <AuthorCard
+              userDetail={userDetail as IUserFields}
+              isPostDetailFetching={isPostDetailFetching}
+              isFetchingUserDetail={isFetchingUserDetail}
+            />
+          </div>
+        </div>
       </div>
     </MainLayout>
   );

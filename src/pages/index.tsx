@@ -1,12 +1,15 @@
-import MainLayout from "@/components/layouts/main-layout";
-import React from "react";
+import { GetServerSideProps } from "next";
 
-const Home = () => {
-  return (
-    <MainLayout>
-      <p>Index</p>
-    </MainLayout>
-  );
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    redirect: {
+      destination: "/posts",
+      permanent: false,
+    },
+  };
 };
 
-export default Home;
+// redirect karena ternyata tidak ada halaman home
+export default function Home() {
+  return null;
+}
