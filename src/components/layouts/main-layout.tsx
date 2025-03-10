@@ -11,13 +11,11 @@ type MenuItem = Required<MenuProps>["items"][number];
 function getItem(
   label: React.ReactNode,
   key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
+  icon?: React.ReactNode
 ): MenuItem {
   return {
     key,
     icon,
-    children,
     label,
   } as MenuItem;
 }
@@ -41,12 +39,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
+      {/* Desktop Sidebar */}
       <Sider
         className="hidden md:block"
         collapsible
         collapsed={collapsed}
         theme="light"
-        onCollapse={(value) => setCollapsed(value)}
+        onCollapse={setCollapsed}
         style={{
           position: "fixed",
           height: "100vh",
@@ -58,16 +57,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <Menu
           theme="light"
-          selectedKeys={[
-            items
-              .filter(
-                (item) => item?.key && pathname?.startsWith(item.key as string)
-              )
-              .sort(
-                (a, b) => (b?.key as string).length - (a?.key as string).length
-              )
-              .map((item) => item?.key as string)[0] || pathname,
-          ]}
+          selectedKeys={[pathname]}
           mode="inline"
           items={items}
           className="!pt-[24px]"
@@ -75,15 +65,15 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         />
       </Sider>
 
+      {/* Main Content */}
       <Layout
         style={{
           marginLeft: collapsed ? 80 : 200,
           transition: "margin-left 0.2s",
         }}
+        className="!ml-0 md:ml-[80px] md:!ml-[200px]"
       >
-        <Content
-          style={{ margin: "0 16px", paddingTop: 24, paddingBottom: 24 }}
-        >
+        <Content style={{ margin: "16px", paddingTop: 12, paddingBottom: 12 }}>
           <div
             style={{
               padding: 24,
@@ -96,6 +86,25 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             {children}
           </div>
         </Content>
+
+        <div className="fixed bottom-0 left-0 w-full bg-white shadow-md md:hidden">
+          <Menu
+            mode="horizontal"
+            selectedKeys={[pathname]}
+            onClick={handleMenu}
+            className="flex justify-around"
+            items={
+              items.map((item) => ({
+                key: item?.key,
+                label: (
+                  <div className="flex flex-col items-center">
+                    <span className="text-xs">{item?.key}</span>
+                  </div>
+                ),
+              })) as MenuItem[]
+            }
+          />
+        </div>
       </Layout>
     </Layout>
   );
