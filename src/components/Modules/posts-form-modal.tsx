@@ -1,19 +1,25 @@
-import React from "react";
-import { Modal } from "antd";
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
 import PostForm from "./posts-form";
+import { SearchOutlined } from "@ant-design/icons";
 
-interface IPostsFormModalProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}
-
-const PostsFormModal = ({ open, setOpen }: IPostsFormModalProps) => {
+const PostsFormModal = () => {
+  const [open, setOpen] = useState(false);
   const handleCancel = () => {
     setOpen(false);
   };
 
   return (
     <>
+      <Button
+        type="primary"
+        icon={<SearchOutlined />}
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Create Posts
+      </Button>
       <Modal
         title="Create New Post"
         open={open}
@@ -23,9 +29,7 @@ const PostsFormModal = ({ open, setOpen }: IPostsFormModalProps) => {
         centered={true}
       >
         <div className="w-full flex flex-col gap-4">
-          <div>
-            <PostForm />
-          </div>
+          <PostForm setOpen={setOpen} />
         </div>
       </Modal>
     </>

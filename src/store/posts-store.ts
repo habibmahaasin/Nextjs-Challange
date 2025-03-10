@@ -1,15 +1,16 @@
 import { IPostsField } from "@/types/posts-type";
 import { create } from "zustand";
+import Cookies from "js-cookie";
 
 export interface IPostsStore {
   data: IPostsField;
   setPostsField: (fields: Partial<IPostsField>) => void;
 }
 
-export const userStore = create<IPostsStore>((set) => ({
+export const postsStore = create<IPostsStore>((set) => ({
   data: {
     id: null,
-    user_id: null,
+    user_id: Cookies.get("user_id") ? Number(Cookies.get("user_id")) : null,
     title: "",
     body: "",
   },

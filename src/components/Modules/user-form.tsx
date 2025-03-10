@@ -6,7 +6,7 @@ import { useUsers } from "@/hooks/use-users";
 import { IUserFields } from "@/types/users-type";
 
 const UserForm: React.FC = () => {
-  const { mutate: createUser, isPending } = useUsers();
+  const { createUserMutation: createUser, isPending } = useUsers();
   const { data, setUserField } = userStore();
 
   const onFinish: FormProps<IUserFields>["onFinish"] = (values) => {

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["gw.alipayobjects.com"],
+    domains: ["gw.alipayobjects.com", "os.alipayobjects.com"],
   },
 };
 

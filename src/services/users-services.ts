@@ -50,3 +50,16 @@ export const createUser = async (
     throw new Error(errorMessage);
   }
 };
+
+export const getUserDetailApi = async ({
+  id,
+}: {
+  id: string;
+}): Promise<IUserFields> => {
+  try {
+    const response = await API.get<IUserFields>(`/public/v2/users/${id}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Service error");
+  }
+};

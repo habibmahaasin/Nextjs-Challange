@@ -42,6 +42,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
+        className="hidden md:block"
         collapsible
         collapsed={collapsed}
         theme="light"
@@ -57,7 +58,16 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <Menu
           theme="light"
-          selectedKeys={[pathname]}
+          selectedKeys={[
+            items
+              .filter(
+                (item) => item?.key && pathname?.startsWith(item.key as string)
+              )
+              .sort(
+                (a, b) => (b?.key as string).length - (a?.key as string).length
+              )
+              .map((item) => item?.key as string)[0] || pathname,
+          ]}
           mode="inline"
           items={items}
           className="!pt-[24px]"
@@ -71,11 +81,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           transition: "margin-left 0.2s",
         }}
       >
-        <Content style={{ margin: "0 16px", paddingTop: 24 }}>
+        <Content
+          style={{ margin: "0 16px", paddingTop: 24, paddingBottom: 24 }}
+        >
           <div
             style={{
               padding: 24,
-              minHeight: 360,
+              minHeight: "100%",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
               marginBottom: 24,

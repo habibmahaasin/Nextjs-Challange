@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
 import type { FormProps } from "antd";
 import { Button, Form, Input, Select } from "antd";
-import { userStore } from "@/store/users-store";
-import { useUsers } from "@/hooks/use-users";
-import { IUserFields } from "@/types/users-type";
+import { IPostsField } from "@/types/posts-type";
+import { postsStore } from "@/store/posts-store";
+import { usePosts } from "@/hooks/use-posts";
 
-const PostForm: React.FC = () => {
-  const { mutate: createUser, isPending } = useUsers();
-  const { data, setUserField } = userStore();
+const PostForm = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
+  const { data, setPostsField } = postsStore();
+  const { createPostMutation, isCreating } = usePosts();
 
-  const onFinish: FormProps<IUserFields>["onFinish"] = (values) => {
-    createUser({ data: values, token: data.token });
+  const onFinish: FormProps<IPostsField>["onFinish"] = () => {
+    createPostMutation(data, {
+      onSuccess: () => {
+        setOpen(false);
+        setPostsField({
+          ...data,
+          title: "",
+          body: "",
+        });
+      },
+    });
   };
 
   const [form] = Form.useForm();
@@ -28,23 +37,31 @@ const PostForm: React.FC = () => {
       layout="vertical"
       autoComplete="off"
       initialValues={data}
-      onValuesChange={(_, allValues) => setUserField(allValues)}
+      onValuesChange={(_, allValues) => setPostsField(allValues)}
     >
-      <Form.Item<IUserFields>
+      <Form.Item<IPostsField>
         label="Title"
-        // name="title"
-        rules={[{ required: true, message: "Please input your title!" }]}
+        name="title"
+        rules={[{ required: true, message: "Please input your Title!" }]}
       >
-        <Input onChange={(e) => setUserField({ name: e.target.value })} />
+        <Input
+          onChange={(e) => setPostsField({ title: e.target.value })}
+          placeholder="Input Post Title"
+        />
       </Form.Item>
 
-      <Form.Item<IUserFields>
-        label="Title"
-        // name="title"
-        rules={[{ required: true, message: "Please input your title!" }]}
+      <Form.Item<IPostsField>
+        label="Body"
+        name="body"
+        rules={[
+          { required: true, message: "Please input your Body!" },
+          { max: 500, message: "Body must not exceed 500 characters!" },
+        ]}
       >
         <Input.TextArea
-          onChange={(e) => setUserField({ name: e.target.value })}
+          onChange={(e) => setPostsField({ body: e.target.value })}
+          placeholder="Input Post Body"
+          autoSize={{ minRows: 5 }}
         />
       </Form.Item>
 
@@ -53,9 +70,9 @@ const PostForm: React.FC = () => {
           type="primary"
           htmlType="submit"
           className="w-full"
-          loading={isPending}
+          loading={isCreating}
         >
-          Add User and Continue
+          Create
         </Button>
       </Form.Item>
     </Form>
