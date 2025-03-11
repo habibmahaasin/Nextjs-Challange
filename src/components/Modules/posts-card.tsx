@@ -9,7 +9,7 @@ const PostsCard = ({ data }: { data: IPostsField }) => {
   return (
     <Card
       title={data.title}
-      className="w-full min-h-full"
+      className="w-full min-h-full post-card"
       extra={<DropdownMenu data={data} />}
     >
       <div className="flex flex-col gap-6 w-full justify-between min-h-[150px]">

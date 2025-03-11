@@ -39,7 +39,10 @@ const PostsIndex = () => {
       <MainLayout>
         <div className="w-full flex flex-col gap-6 relative">
           <div className="flex flex-col-reverse md:flex-row gap-4 items-center justify-between sticky top-0 z-20 bg-white py-4">
-            <div className="flex flex-col md:flex-row gap-2 items-center w-full md:max-w-md">
+            <div
+              className="flex flex-col md:flex-row gap-2 items-center w-full md:max-w-md"
+              id="search-wrapper"
+            >
               <div className="w-full flex items-center gap-2">
                 <span className="text-xs font-semibold text-nowrap">
                   Search By:
@@ -98,7 +101,7 @@ const PostsIndex = () => {
             </div>
           )}
 
-          <Row gutter={[16, 16]}>
+          <Row gutter={[16, 16]} id="card-layout">
             {isLoading ? (
               Array.from({ length: 9 }).map((_, index) => (
                 <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
@@ -124,7 +127,7 @@ const PostsIndex = () => {
           </Row>
 
           {posts?.data?.length == 0 || isLoading ? null : (
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center" id="pagination-wrapper">
               <Pagination
                 current={page}
                 total={Number(posts?.meta?.totalItems) || 0}

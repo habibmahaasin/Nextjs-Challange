@@ -67,6 +67,7 @@ const PostForm = ({
         <Input
           onChange={(e) => setPostsField({ title: e.target.value })}
           placeholder="Input Post Title"
+          name="title"
         />
       </Form.Item>
 
@@ -82,6 +83,7 @@ const PostForm = ({
           onChange={(e) => setPostsField({ body: e.target.value })}
           placeholder="Input Post Body"
           autoSize={{ minRows: 5 }}
+          name="body"
         />
       </Form.Item>
 

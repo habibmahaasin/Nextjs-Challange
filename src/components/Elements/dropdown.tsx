@@ -39,6 +39,7 @@ const DropdownMenu = ({ data }: { data: IPostsField }) => {
             variant="link"
             type="link"
             className="hover:!text-white"
+            id="delete-post"
             onClick={(e) => e.stopPropagation()}
           >
             Delete
@@ -50,7 +51,7 @@ const DropdownMenu = ({ data }: { data: IPostsField }) => {
 
   return (
     <Dropdown menu={{ items }} trigger={["click"]}>
-      <Space className="text-blue-500 cursor-pointer">
+      <Space className="text-blue-500 cursor-pointer" id="dropdown-btn">
         <SettingOutlined />
       </Space>
     </Dropdown>

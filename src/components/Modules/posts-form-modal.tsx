@@ -24,6 +24,7 @@ const PostsFormModal = ({
       <Button
         type={type === "create" ? "primary" : "link"}
         icon={type === "create" && <SearchOutlined />}
+        id={type === "create" ? "create-post-modal" : "edit-post-modal"}
         onClick={() => {
           setOpen(true);
           if (type === "update") {

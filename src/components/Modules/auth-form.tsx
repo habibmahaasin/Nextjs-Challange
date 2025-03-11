@@ -58,7 +58,7 @@ const AuthForm: React.FC = () => {
           name="name"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
-          <Input placeholder="input your name" />
+          <Input placeholder="input your name" name="name" />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -66,7 +66,7 @@ const AuthForm: React.FC = () => {
           name="token"
           rules={[{ required: true, message: "Please input your token!" }]}
         >
-          <Input.Password placeholder="input your token" />
+          <Input.Password placeholder="input your token" name="token" />
         </Form.Item>
 
         <Form.Item>
