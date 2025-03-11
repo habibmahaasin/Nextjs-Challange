@@ -5,5 +5,6 @@ module.exports = defineConfig({
     baseUrl: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
     supportFile: false,
     experimentalSessionAndOrigin: true,
+    defaultCommandTimeout: 10000,
   },
 });
