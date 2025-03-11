@@ -1,40 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name
 
-## Getting Started
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
+[![Build Status](https://img.shields.io/github/actions/workflow/status/username/repository/ci.yml)](https://github.com/username/repository/actions)  
+[![Version](https://img.shields.io/npm/v/project-name)](https://www.npmjs.com/package/project-name)
 
-First, run the development server:
+## 📌 Overview
+
+This project is a **challenge from Synapsis Company** as part of the recruitment process.
+
+## 🚀 Features
+
+- ✅ **Authentication**
+- ✅ **Post List with Pagination and CRUD Operations**
+- ✅ **Post Details Page**
+
+## 🛠 Tech Stack
+
+This project is built using:
+
+| Technology         | Description                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| **Next.js**        | A React framework for SSR & SSG                                                                                    |
+| **TypeScript**     | A strongly typed programming language based on JavaScript                                                          |
+| **Ant Design**     | A UI framework for building modern web applications                                                                |
+| **Tailwind CSS**   | A utility-first CSS framework for rapid UI development                                                             |
+| **Zustand**        | A lightweight and scalable state management solution                                                               |
+| **TanStack Query** | A powerful data-fetching library for React applications, enabling caching, synchronization, and background updates |
+| **Cypress**        | An end-to-end testing framework for automated UI testing                                                           |
+
+## 📦 Installation
+
+To install and run this project locally, follow these steps:
 
 ```bash
+# Clone the repository
+git clone https://github.com/username/repository.git
+cd repository
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Run the Cypers e2e Testing
+npm run test:e2e
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
