@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
