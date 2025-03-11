@@ -28,6 +28,8 @@ const App = ({ Component, pageProps }: AppProps) => {
       }}
     >
       <Head>
+        <link rel="manifest" href="/manifest.json" />{" "}
+        <meta name="theme-color" content="#ffffff" />
         <title>Synapsis Challenge</title>
         <meta name="description" content="Synapsis Challenge" />
       </Head>
