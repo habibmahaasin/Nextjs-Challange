@@ -79,5 +79,5 @@ jobs:
 
       - name: Run Cypress Tests on Vercel
         env:
-          CYPRESS_BASE_URL: ${{ steps.deploy.outputs.vercel_url }}
+          CYPRESS_BASE_URL: ${{ secrets.VERCEL_URL }}
         run: npm run test:e2e
