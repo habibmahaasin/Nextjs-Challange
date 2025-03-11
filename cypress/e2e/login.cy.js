@@ -14,7 +14,7 @@ describe("Form Validation", () => {
       .type("8ab2666dde2ff8fd978726bedb30cd2d19f28e9c787ad8fb9b643cd8d7b97174")
       .should(
         "have.value",
-        "8ab2666dde2ff8fd978726bedb30cd2d19f28e9c787ad8fb9b643cd8d7b97174"
+        "8ab2666dde2ff8fd978726bedb30cd2d19f28e9c787ad8fb9b643cd8d7b97174",
       );
 
     cy.get("button[type='submit']")

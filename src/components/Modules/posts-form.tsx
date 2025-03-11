@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import type { FormProps } from "antd";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input } from "antd";
 import { IPostsField } from "@/types/posts-type";
 import { postsStore } from "@/store/posts-store";
 import { usePosts } from "@/hooks/use-posts";
@@ -9,7 +9,7 @@ const PostForm = ({
   setOpen,
   type,
 }: {
-  setOpen: (open: boolean) => void;
+  setOpen: (_open: boolean) => void;
   type: "create" | "update";
 }) => {
   const { data, setPostsField } = postsStore();

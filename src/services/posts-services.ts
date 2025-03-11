@@ -38,7 +38,7 @@ export const getPostsLists = async ({
 };
 
 export const createPostApi = async (
-  data: IPostsField
+  data: IPostsField,
 ): Promise<IPostsField> => {
   try {
     const response = await API.post<IPostsField>("/public/v2/posts", data);
@@ -60,12 +60,12 @@ export const createPostApi = async (
 };
 
 export const updatePostApi = async (
-  data: IPostsField
+  data: IPostsField,
 ): Promise<IPostsField> => {
   try {
     const response = await API.put<IPostsField>(
       `/public/v2/posts/${data.id}`,
-      data
+      data,
     );
     return response.data;
   } catch (error: unknown) {
@@ -85,11 +85,11 @@ export const updatePostApi = async (
 };
 
 export const deletePostApi = async (
-  data: IPostsField
+  data: IPostsField,
 ): Promise<IPostsField> => {
   try {
     const response = await API.delete<IPostsField>(
-      `/public/v2/posts/${data.id}`
+      `/public/v2/posts/${data.id}`,
     );
     return response.data;
   } catch (error: unknown) {

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
@@ -19,6 +20,7 @@
     "nextjs-toploader": "^3.7.15",
     "react": "^18",
     "react-dom": "^18",
+    "vercel": "^41.3.2",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "eslint-config-next": "13.5.8",
     "eslint-plugin-unused-imports": "^4.1.4",
     "postcss": "^8",
+    "prettier": "^3.5.3",
     "tailwindcss": "^3",
     "typescript": "^5"
   }

@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 export interface IuserStore {
   data: IUserFields;
-  setUserField: (fields: Partial<IUserFields>) => void;
+  setUserField: (_fields: Partial<IUserFields>) => void;
 }
 
 export const userStore = create<IuserStore>((set) => ({

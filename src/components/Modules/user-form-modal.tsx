@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "antd";
 import UserForm from "./user-form";
 
 interface IuserFormModalProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: (_open: boolean) => void;
 }
 
 const UserFormModal = ({ open, setOpen }: IuserFormModalProps) => {

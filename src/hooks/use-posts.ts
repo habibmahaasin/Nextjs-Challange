@@ -36,7 +36,7 @@ export const usePosts = () => {
   }, [title, user_id, body, initialFilter, initialQuery]);
 
   const updateQueryParams = (
-    newParams: Record<string, string | number | null>
+    newParams: Record<string, string | number | null>,
   ) => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -55,9 +55,9 @@ export const usePosts = () => {
   const handleSearch = (
     searchValue: string,
     selectedFilter: string,
-    updateQueryParams: (params: {
+    updateQueryParams: (_params: {
       [key: string]: string | number | null;
-    }) => void
+    }) => void,
   ) => {
     const queryParams: { [key: string]: string | null } = {
       title: null,

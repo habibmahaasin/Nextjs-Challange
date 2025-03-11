@@ -15,7 +15,7 @@ export interface IUsersResponse {
 }
 
 export const getUserLists = async (
-  data: ILoginData
+  data: ILoginData,
 ): Promise<IUsersResponse[]> => {
   try {
     const response = await API.get<IUsersResponse[]>("/public/v2/users", {
@@ -34,7 +34,7 @@ export const getUserLists = async (
 
 export const createUser = async (
   data: IUserFields,
-  token: string
+  token: string,
 ): Promise<IUserFields> => {
   try {
     const response = await API.post<IUserFields>("/public/v2/users", data, {

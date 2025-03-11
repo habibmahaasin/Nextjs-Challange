@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 interface IAuthState {
   token: string | null;
   isAuthenticated: boolean;
-  setToken: (token: string) => void;
+  setToken: (_token: string) => void;
   logout: () => void;
 }
 

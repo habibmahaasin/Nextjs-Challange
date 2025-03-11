@@ -1,7 +1,7 @@
 import { IUserFields } from "@/types/users-type";
 import { Card, Skeleton, Typography } from "antd";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const AuthorCard = ({
   userDetail,

@@ -32,7 +32,7 @@ const AuthForm: React.FC = () => {
         } else {
           Cookies.set(
             "user_id",
-            data.find((item) => item.name === values.name)?.id.toString() || ""
+            data.find((item) => item.name === values.name)?.id.toString() || "",
           );
           Cookies.set("token", values.token);
           router.push("/");

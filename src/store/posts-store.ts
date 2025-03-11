@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 export interface IPostsStore {
   data: IPostsField;
-  setPostsField: (fields: Partial<IPostsField>) => void;
+  setPostsField: (_fields: Partial<IPostsField>) => void;
 }
 
 export const postsStore = create<IPostsStore>((set) => ({

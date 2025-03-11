@@ -7,7 +7,7 @@ import { IPostsField } from "@/types/posts-type";
 import { usePosts } from "@/hooks/use-posts";
 
 const DropdownMenu = ({ data }: { data: IPostsField }) => {
-  const { deletePostMutation, isDeleting } = usePosts();
+  const { deletePostMutation } = usePosts();
 
   const confirm = (e?: React.MouseEvent<HTMLElement>) => {
     e?.stopPropagation();

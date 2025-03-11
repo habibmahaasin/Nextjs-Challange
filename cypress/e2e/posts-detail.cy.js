@@ -2,7 +2,7 @@ describe("Posts Detail Page", () => {
   beforeEach(() => {
     cy.setCookie(
       "token",
-      "8ab2666dde2ff8fd978726bedb30cd2d19f28e9c787ad8fb9b643cd8d7b97174"
+      "8ab2666dde2ff8fd978726bedb30cd2d19f28e9c787ad8fb9b643cd8d7b97174",
     );
     cy.setCookie("user_id", "7760201");
     cy.visit("/posts/198348");
