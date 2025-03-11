@@ -1,4 +1,4 @@
-# Synapsis Challange
+# Synapsis Challenge
 
 ## 📌 Overview
 
@@ -9,6 +9,7 @@ This project is a **challenge from Synapsis Company** as part of the recruitment
 - ✅ **Authentication**
 - ✅ **Post List with Pagination and CRUD Operations**
 - ✅ **Post Details Page**
+- ✅ **PWA Support** (Progressive Web App)
 
 ## 🛠 Tech Stack
 
@@ -31,7 +32,7 @@ To install and run this project locally, follow these steps:
 ```bash
 # Clone the repository
 git clone https://github.com/habibmahaasin/Synapsis-Challange.git
-cd repository
+cd Synapsis-Challange
 
 # Install dependencies
 npm install
@@ -39,6 +40,12 @@ npm install
 # Run the development server
 npm run dev
 
-# Run the Cypers e2e Testing
+# Run the Cypress e2e Testing
 npm run test:e2e
 ```
+
+## 🌍 Live Demo
+
+This project is deployed on Vercel. You can check the live version here:  
+🔗 [Synapsis Challenge](https://synapsis-challange.vercel.app/)
+
