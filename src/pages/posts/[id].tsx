@@ -30,7 +30,7 @@ const PostsDetail = () => {
         </Button>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 w-full p-4 bg-white shadow-sm">
+          <div className="md:col-span-2 w-full">
             {isPostDetailFetching ? (
               <Skeleton active />
             ) : (
@@ -43,7 +43,7 @@ const PostsDetail = () => {
             )}
           </div>
 
-          <div className="w-full p-4 bg-white shadow-sm">
+          <div className="w-full md:p-4">
             <AuthorCard
               userDetail={userDetail as IUserFields}
               isPostDetailFetching={isPostDetailFetching}

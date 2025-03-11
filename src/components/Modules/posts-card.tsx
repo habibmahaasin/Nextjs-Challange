@@ -17,7 +17,7 @@ const PostsCard = ({ data }: { data: IPostsField }) => {
         <Button
           color="default"
           variant="outlined"
-          className="w-fit items-end"
+          className="w-fit"
           onClick={() => {
             router.push(`/posts/${data.id}`);
           }}

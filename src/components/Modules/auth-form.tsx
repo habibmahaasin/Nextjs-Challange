@@ -32,7 +32,7 @@ const AuthForm: React.FC = () => {
         } else {
           Cookies.set(
             "user_id",
-            data.find((item) => item.name === values.name)?.id.toString() || "",
+            data.find((item) => item.name === values.name)?.id.toString() || ""
           );
           Cookies.set("token", values.token);
           router.push("/");
@@ -57,8 +57,9 @@ const AuthForm: React.FC = () => {
           label="Name"
           name="name"
           rules={[{ required: true, message: "Please input your name!" }]}
+          className="!mb-2"
         >
-          <Input placeholder="input your name" name="name" />
+          <Input placeholder="Input your name" name="name" />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -66,10 +67,10 @@ const AuthForm: React.FC = () => {
           name="token"
           rules={[{ required: true, message: "Please input your token!" }]}
         >
-          <Input.Password placeholder="input your token" name="token" />
+          <Input.Password placeholder="Input your token" name="token" />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item className="!mb-0">
           <Button
             type="primary"
             htmlType="submit"

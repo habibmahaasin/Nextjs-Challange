@@ -5,7 +5,13 @@ import type { DocumentContext } from "next/document";
 
 const MyDocument = () => (
   <Html lang="en">
-    <Head />
+    <Head>
+      <link
+        rel="icon"
+        type="image/svg+xml"
+        href="https://www.mahaasin.my.id/logo.svg"
+      />
+    </Head>
     <body>
       <Main />
       <NextScript />

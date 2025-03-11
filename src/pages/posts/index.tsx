@@ -1,6 +1,5 @@
 import MainLayout from "@/components/layouts/main-layout";
 import PostsCard from "@/components/Modules/posts-card";
-import PostsFormModal from "@/components/Modules/posts-form-modal";
 import { usePosts } from "@/hooks/use-posts";
 import { IPostsField } from "@/types/posts-type";
 import {
@@ -11,10 +10,12 @@ import {
   Input,
   Select,
   Typography,
+  theme,
 } from "antd";
 import React from "react";
 
 const { Search } = Input;
+const { useToken } = theme;
 
 const PostsIndex = () => {
   const {
@@ -34,11 +35,17 @@ const PostsIndex = () => {
   const onChange = (value: string) => {
     setSelectedFilter(value);
   };
+
+  const { token } = useToken();
+
   return (
     <>
       <MainLayout>
         <div className="w-full flex flex-col gap-6 relative">
-          <div className="flex flex-col-reverse md:flex-row gap-4 items-center justify-between sticky top-0 z-20 bg-white py-4">
+          <div
+            className="flex flex-col-reverse md:flex-row gap-4 items-center justify-between  py-4"
+            style={{ backgroundColor: token.colorBgContainer }}
+          >
             <div
               className="flex flex-col md:flex-row gap-2 items-center w-full md:max-w-md"
               id="search-wrapper"
@@ -85,9 +92,6 @@ const PostsIndex = () => {
                 }}
                 className="w-full"
               />
-            </div>
-            <div className="w-full flex justify-end">
-              <PostsFormModal type="create" />
             </div>
           </div>
           {title && (

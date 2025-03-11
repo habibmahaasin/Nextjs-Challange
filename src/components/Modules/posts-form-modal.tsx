@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import PostForm from "./posts-form";
-import { SearchOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { IPostsField } from "@/types/posts-type";
 import { postsStore } from "@/store/posts-store";
 import Cookies from "js-cookie";
@@ -23,7 +23,7 @@ const PostsFormModal = ({
     <>
       <Button
         type={type === "create" ? "primary" : "link"}
-        icon={type === "create" && <SearchOutlined />}
+        icon={type === "create" && <PlusOutlined />}
         id={type === "create" ? "create-post-modal" : "edit-post-modal"}
         onClick={() => {
           setOpen(true);

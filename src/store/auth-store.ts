@@ -19,6 +19,7 @@ export const authStore = create<IAuthState>((set) => ({
 
   logout: () => {
     Cookies.remove("token");
+    Cookies.remove("user_id");
     set({ token: null, isAuthenticated: false });
   },
 }));
