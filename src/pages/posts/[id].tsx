@@ -17,6 +17,8 @@ const PostsDetail = () => {
   });
   const router = useRouter();
 
+  // test
+
   return (
     <MainLayout>
       <div className="flex flex-col gap-4 p-0 md:p-6">
