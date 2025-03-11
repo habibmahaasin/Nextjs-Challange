@@ -1,14 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export const protectedRoutes = ["/"];
+export const protectedRoutes = ["/", "/posts", "/posts/:path*"];
 export const publicRoutes = ["/login"];
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const currentPath = req.nextUrl.pathname;
 
-  if (!token && protectedRoutes.includes(currentPath)) {
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    new RegExp(
+      `^${route.replace(/:\w+\*/g, ".*").replace(/:\w+/g, "[^/]+")}$`
+    ).test(currentPath)
+  );
+
+  if (!token && isProtectedRoute) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -20,5 +26,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login"],
+  matcher: ["/", "/login", "/posts", "/posts/:path*"],
 };
