@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Synapsis Challange
+name: CI/CD Pipeline Synapsis Challenge
 
 on:
   push:
@@ -48,11 +48,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start Next.js app
-        run: npm run build && npm run start &
+      - name: Install `start-server-and-test`
+        run: npm install -g start-server-and-test
 
-      - name: Run Cypress tests
-        run: npm run test:e2e
+      - name: Start app & run Cypress
+        run: start-server-and-test dev http://localhost:3000 test:e2e
 
   deploy:
     name: Deploy to Vercel
@@ -76,3 +76,8 @@ jobs:
 
       - name: Deploy to Vercel
         run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Run Cypress Tests on Vercel
+        env:
+          CYPRESS_BASE_URL: ${{ steps.deploy.outputs.vercel_url }}
+        run: npm run test:e2e
