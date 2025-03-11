@@ -23,6 +23,7 @@ This project is built using:
 | **Tailwind CSS v.3** | A utility-first CSS framework for rapid UI development                                                             |
 | **Zustand**          | A lightweight and scalable state management solution                                                               |
 | **TanStack Query**   | A powerful data-fetching library for React applications, enabling caching, synchronization, and background updates |
+| **Axios**            | A promise-based HTTP client for making API requests                                                               |
 | **Cypress**          | An end-to-end testing framework for automated UI testing                                                           |
 
 ## 📦 Installation
