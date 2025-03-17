@@ -1,8 +1,4 @@
-# Synapsis Challenge
-
-## 📌 Overview
-
-This project is a **challenge from Synapsis Company** as part of the recruitment process.
+# Nextjs Challenge
 
 ## 🚀 Features
 
